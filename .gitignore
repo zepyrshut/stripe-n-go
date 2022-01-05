@@ -1,0 +1,10 @@
+xxx.go
+*.code-workspace
+coverage.out
+.idea
+run.sh
+.DS_Store
+database.yml
+cheatsheet-dev.md
+run.bat
+static/webpages
