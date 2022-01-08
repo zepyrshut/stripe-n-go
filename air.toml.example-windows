@@ -7,11 +7,11 @@ tmp_dir = "tmp"
 
 [build]
 # Just plain old shell command. You could use `make` as well.
-cmd = "go build -o ./tmp/main ./cmd/web/."
+cmd = "go build -o ./tmp/main/app.exe ./cmd/web/"
 # Binary file yields from `cmd`.
-bin = "tmp main"
+bin = "tmp/main/app.exe"
 # Customize binary.
-full_bin = "STRIPE_SECRET= STRIPE_KEY= ./tmp/main"
+#full_bin = "STRIPE_SECRET= STRIPE_KEY= ./tmp/main/app.exe"
 # Watch these filename extensions.
 include_ext = ["go", "tpl", "tmpl", "html", "gohtml"]
 # Ignore these filename extensions or directories.

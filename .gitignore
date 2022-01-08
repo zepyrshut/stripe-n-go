@@ -9,3 +9,6 @@ cheatsheet-dev.md
 run.bat
 static/webpages
 stripe-go.exe
+.air.toml
+Makefile
+dist

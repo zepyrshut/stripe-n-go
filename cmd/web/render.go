@@ -87,4 +87,6 @@ func (app *application) parseTemplate(partials []string, page, templateToRender 
 	app.templateCache[templateToRender] = t
 	return t, nil
 
+	
+
 }
