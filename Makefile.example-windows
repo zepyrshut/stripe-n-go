@@ -1,10 +1,3 @@
-SHELL=cmd
-STRIPE_SECRET=
-STRIPE_KEY=pk=
-GOSTRIPE_PORT=
-API_PORT=
-DSN="root@(localhost:3306)/widgets?parseTime=true&tls=false"
-
 ## build: builds all binaries
 build: clean build_front build_back
 	@echo All binaries built!

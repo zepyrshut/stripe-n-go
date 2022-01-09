@@ -1,4 +1,3 @@
-xxx.go
 *.code-workspace
 coverage.out
 .idea
@@ -13,3 +12,4 @@ stripe-go.exe
 Makefile
 dist
 tmp
+variables.env
