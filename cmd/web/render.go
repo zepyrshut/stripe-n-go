@@ -19,6 +19,7 @@ type templateData struct {
 	Error           string
 	IsAuthenticated int
 	API             string
+	PI              string
 	CSSVersion      string
 }
 
@@ -29,6 +30,8 @@ var functions = template.FuncMap{}
 var templateFS embed.FS
 
 func (app *application) addDefaultData(td *templateData, r *http.Request) *templateData {
+	td.API = app.config.api
+	td.PI = app.config.pi
 	return td
 }
 
@@ -86,7 +89,5 @@ func (app *application) parseTemplate(partials []string, page, templateToRender 
 
 	app.templateCache[templateToRender] = t
 	return t, nil
-
-	
 
 }

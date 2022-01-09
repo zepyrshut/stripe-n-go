@@ -19,6 +19,7 @@ type config struct {
 	port int
 	env  string // environment
 	api  string
+	pi   string
 	db   struct { // database
 		dsn string // data source name
 	}
@@ -58,7 +59,8 @@ func main() {
 	// adding specific attributes to the application, such as port, type of env, api...
 	flag.IntVar(&cfg.port, "port", 8080, "server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "app.environment {development|production}")
-	flag.StringVar(&cfg.api, "api", "http://localhost:8081", "url to api")
+	flag.StringVar(&cfg.api, "api", "http://localhost:8081/", "url to api")
+	flag.StringVar(&cfg.pi, "pi", "http://localhost:8081/api/payment-intent", "url to pi")
 	flag.Parse()
 
 	// prevents the key from being accesible, hidden in environment os

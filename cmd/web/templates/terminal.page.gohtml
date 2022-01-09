@@ -7,7 +7,7 @@
 <h2 class="mt-3 text-center">Virtual Terminal<h2>
         <hr>
         <div class="alert alert-danger text-center d-none" id="card-messages"></div>
-        <form action="/payment-succeeded" method="POST" name="charge_form" id="charge_form"
+        <form action="/payment-succeeded" method="POST" name="charge-form" id="charge-form"
             class="d-block needs-validation charge-form" autocomplete="off" novalidate="">
             <div class="mb-3">
                 <label for="amount" class="form-label">Cantidad:</label>
@@ -37,10 +37,10 @@
                     <span class="visually-hidden">Procesando...</span>
                 </div>
             </div>
-            <input type="hidden" name="payment_intent" id="payment_intent">
-            <input type="hidden" name="payment_method" id="payment_method">
-            <input type="hidden" name="payment_amount" id="payment_amount">
-            <input type="hidden" name="payment_currency" id="payment_currency">
+            <input type="hidden" name="payment-intent" id="payment-intent">
+            <input type="hidden" name="payment-method" id="payment-method">
+            <input type="hidden" name="payment-amount" id="payment-amount">
+            <input type="hidden" name="payment-currency" id="payment-currency">
             
         </form>
         {{end}}
@@ -53,7 +53,7 @@
             const payButton = document.getElementById("pay-button");
             const processing = document.getElementById("processing-payment");
 
-            stripe = Stripe("pk_test_51JyxKUDOb4UvxZV8ukCl4kW4KOColrVnxqWuOwnhO3zNhDGpX60bTkgQaxlo7JGN5C9Ggsj7Rt13ke9uogJ8E2hZ00cisl3PAw")
+            stripe = Stripe("{{index .StringMap "publishable_key"}}");
 
             function hidePayButton() {
                 payButton.classList.add("d-none");
@@ -80,7 +80,7 @@
             }
 
             function val() {
-                let form = document.getElementById("charge_form");
+                let form = document.getElementById("charge-form");
                 if (form.checkValidity() === false) {
                     this.event.preventDefault();
                     this.event.stopPropagation();
@@ -106,7 +106,7 @@
                     body: JSON.stringify(payload),
                 }
 
-                fetch("http://localhost:8081/api/payment-intent", requestOptions).then(response => response.text()).then(response => {
+                fetch({{.PI}}, requestOptions).then(response => response.text()).then(response => {
                     let data;
                     try {
                         data = JSON.parse(response);
@@ -125,13 +125,14 @@
                             } else if (result.paymentIntent) {
                                 if (result.paymentIntent.status === "succeeded") {
                                     // card charged
-                                    document.getElementById("payment_method").value = result.paymentIntent.payment_method_types[0];
-                                    document.getElementById("payment_intent").value = result.paymentIntent.id;
-                                    document.getElementById("payment_amount").value = result.paymentIntent.amount;
-                                    document.getElementById("payment_currency").value = result.paymentIntent.currency;
+                                    document.getElementById("payment-method").value = result.paymentIntent.payment_method_types[0];
+                                    document.getElementById("payment-intent").value = result.paymentIntent.id;
+                                    document.getElementById("payment-amount").value = result.paymentIntent.amount;
+                                    document.getElementById("payment-currency").value = result.paymentIntent.currency;
                                     processing.classList.add("d-none");
                                     showCardSuccess();
                                     // submit the form
+                                    document.getElementById("charge-form").submit();
                                 }
                             }
                         })

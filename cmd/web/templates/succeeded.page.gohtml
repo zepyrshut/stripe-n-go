@@ -1,0 +1,25 @@
+{{template "base" .}}
+
+{{define "title"}}Factura de compra{{end}}
+
+
+{{define "content"}}
+
+<h2 class="mt-5">Pagado con éxito</h2>
+
+<hr>
+
+<p>Número de pago: {{index .Data "pi"}}</p>
+<p>Titular: {{index .Data "cardholder"}}</p>
+<p>Email: {{index .Data "email"}}</p>
+<p>Método de pago: {{index .Data "pm"}}</p>
+<p>Cantidad: {{index .Data "pa"}}</p>
+<p>Moneda: {{index .Data "pc"}}</p>
+
+
+{{end}}
+
+
+{{define "js"}}
+{{end}}
+
