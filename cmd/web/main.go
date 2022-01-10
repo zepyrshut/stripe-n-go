@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/gob"
 	"flag"
 	"fmt"
 	"html/template"
@@ -12,12 +13,15 @@ import (
 	"web-app-go/internal/driver"
 	"web-app-go/internal/models"
 
+	"github.com/alexedwards/scs/v2"
 	"github.com/joho/godotenv"
 )
 
 // simple trick to clear the cache and force an update
 const version = "1.0.0"
 const cssVersion = "1.0"
+
+var session *scs.SessionManager
 
 // configuration information for aplication, write once, use many times
 type config struct {
@@ -42,6 +46,7 @@ type application struct {
 	templateCache map[string]*template.Template // map, string as key and return value of the pointer
 	version       string
 	DB            models.DBModel
+	Session       *scs.SessionManager
 }
 
 func (app *application) serve() error { // the asterisk is because you want to modify the information that is in memory, pass by reference
@@ -60,6 +65,7 @@ func (app *application) serve() error { // the asterisk is because you want to m
 }
 
 func main() {
+	gob.Register(TransactionData{})
 	var cfg config
 
 	dataSourceName := goDotEnvVariable("DATA_SOURCE_NAME")
@@ -85,6 +91,9 @@ func main() {
 	}
 	defer conn.Close()
 
+	session = scs.New()
+	session.Lifetime = 24 * time.Hour
+
 	// template cache
 	tc := make(map[string]*template.Template)
 
@@ -95,6 +104,7 @@ func main() {
 		templateCache: tc,
 		version:       version,
 		DB:            models.DBModel{DB: conn},
+		Session:       session,
 	}
 
 	err = app.serve()

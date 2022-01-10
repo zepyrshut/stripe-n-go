@@ -1,3 +1,5 @@
+## Use Git Bash insead Windows Terminal
+
 ## build: builds all binaries
 build: clean build_front build_back
 	@echo All binaries built!

@@ -23,17 +23,30 @@
 <p>{{$widget.Description}}</p>
     <hr>
 
+    <div class="mb-3">
+        <label for="first-name" class="form-label">Nombre:</label>
+        <input type="text" class="form-control" name="first_name" id="first-name"
+            aria-describedby="helpId" required="" autocomplete="first-name-new">
+    </div>
 
     <div class="mb-3">
-        <label for="cardholder-name" class="form-label">Nombre titular:</label>
-        <input type="text" class="form-control" name="cardholder_name" id="cardholder-name"
-            aria-describedby="helpId" required="" autocomplete="cardholder-name-new">
+        <label for="last-name" class="form-label">Primer apellido:</label>
+        <input type="text" class="form-control" name="last_name" id="last-name"
+            aria-describedby="helpId" required="" autocomplete="last-name-new">
     </div>
+
     <div class="mb-3">
         <label for="cardholder-email" class="form-label">Correo electrónico:</label>
         <input type="text" class="form-control" name="cardholder_email" id="cardholder-email"
             aria-describedby="helpId" required="" autocomplete="cardholder-email-new">
     </div>
+
+    <div class="mb-3">
+        <label for="cardholder-name" class="form-label">Nombre titular tarjeta:</label>
+        <input type="text" class="form-control" name="cardholder_name" id="cardholder-name"
+            aria-describedby="helpId" required="" autocomplete="cardholder-name-new">
+    </div>
+
     <div class="mb-3">
         <label for="card-element" class="form-label">Número de tarjeta:</label>
         <div id="card-element" class="form-control"></div>

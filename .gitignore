@@ -13,3 +13,4 @@ Makefile
 dist
 tmp
 variables.env
+migrations/schema.sql

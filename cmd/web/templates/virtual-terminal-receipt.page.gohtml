@@ -1,0 +1,28 @@
+{{template "base" .}}
+
+{{define "title"}}Factura de compra{{end}}
+
+
+{{define "content"}}
+
+<h2 class="mt-5">Virtual Terminal pagado con éxito</h2>
+
+<hr>
+{{$txn := index .Data "txn"}}
+<p>Número de pago: {{$txn.PaymentIntentID}}</p>
+<p>Cliente: {{$txn.FirstName}} {{$txn.LastName}}</p>
+<p>Email: {{$txn.Email}}</p>
+<p>Método de pago: {{$txn.PaymentMethodID}}</p>
+<p>Cantidad: {{formatCurrency $txn.PaymentAmount}}</p>
+<p>Moneda: {{$txn.PaymentCurrency}}</p>
+<p>Últimos dígitos: {{$txn.LastFour}}</p>
+<p>Caducidad: {{$txn.ExpiryMonth}}/{{$txn.ExpiryYear}}</p>
+<p>Código banco: {{$txn.BankReturnCode}}</p>
+
+
+{{end}}
+
+
+{{define "js"}}
+{{end}}
+
