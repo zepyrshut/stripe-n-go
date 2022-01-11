@@ -1,0 +1,11 @@
+create_table("tokens") {
+  t.Column("id", "integer", {primary: true})
+  t.Column("user_id", "int", {"unsigned": true})
+  t.Column("name", "string", {"size": 255})
+  t.Column("email", "string", {})
+}
+
+
+sql("alter table tokens add column token_hash bytea not null")
+sql("alter table tokens alter column created_at set default now();")
+sql("alter table tokens alter column updated_at set default now();")

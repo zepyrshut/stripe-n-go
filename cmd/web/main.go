@@ -75,8 +75,7 @@ func main() {
 	flag.IntVar(&cfg.port, "port", appPort, "server port to listen on")
 	flag.StringVar(&cfg.env, "env", "development", "app.environment {development|production}")
 	flag.StringVar(&cfg.db.dsn, "dsn", dataSourceName, "DSN")
-	flag.StringVar(&cfg.api, "api", "http://localhost:8081/", "url to api")
-	flag.StringVar(&cfg.pi, "pi", "http://localhost:8081/api/payment-intent", "url to pi")
+	flag.StringVar(&cfg.api, "api", "http://localhost:8081", "url to api")
 	flag.Parse()
 
 	cfg.stripe.key = goDotEnvVariable("STRIPE_KEY")
